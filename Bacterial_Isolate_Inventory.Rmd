@@ -8,14 +8,16 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 library(shiny)
+libray(dplyr)
+library(magrittr)
 knitr::opts_chunk$set(echo = TRUE)
+
+
 ```
 
-## R Markdown
+## Bergelson Lab Isolate Inventory
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+This project aims to summarize bacterial isolates on hand, and cross-tabulate the specimen with their associated projects.
 
 
 ```{r eruptions, echo=FALSE}
@@ -92,80 +94,6 @@ shinyApp(
 
 }
 )
-
-   
-  
-
-  output$chart <- renderPlot({
-    sum_counts <- iso_df[iso_df[, "Genus"] == input$Genus, c("Genus","population.site")] %>% 
-      table()
-        ggplot(sum_counts, aes(y=Genus, x=Freq)) +
-        geom_col(aes(fill=population.site))
-      },
-    res =96
-    )
+``` 
 
 
-testing <- iso_df[,c("Genus","population.site")] %>% 
-  table()
-ggplot(testing, aes(y=Genus, x=Freq)) +
-geom_col(aes(fill=population.site))
-
-
-sum.chart <-ggplot(iso_df[iso_df[, "Genus"] == c("Sphingomonas"), c("Genus","population.site")] %>% table, aes(y=Genus, x=Freq)) +
-      geom_col(aes(fill=population.site))
-
-
-
-####works
-iso_df_gen <- as.character(unique(iso_df$Genus))
-
-shinyApp(
-  ui = fluidPage(
-
-    selectInput(
-   'Genus', label = 'genus',
-    choices = c(iso_df_gen), 
-    selected = 'Sphingomonas',
-    multiple = TRUE),
-    tableOutput("data")
-  ),
-  server = function(input, output) {
-  #output$data <- renderTable({
-  #iso_df[iso_df[, "Genus"] == input$Genus,]
-  #  }, rownames = TRUE)
-  
-  output$data <- reactive({
-   df <- iso_df[iso_df[, "Genus"] == input$Genus,] #ok
-   df <- df[,c("Genus","population.site")] %>% #ok 
-         droplevels() %>% #ok
-          table() %>% #ok
-         data.frame() #ok
-   df <- df[with(df, order(Genus)),] #ok
-  
-  },
-  rownames=TRUE
-  )
-  
-  output$data <- renderPlot({
-   
-   #g<-ggplot(data=filtered_data(), aes(y=Genus, x=Freq)) +
-    #    geom_col(aes(fill=population.site))
-   #g
-  }
-  )
-
-
-
-```
-
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
