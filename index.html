@@ -81,6 +81,11 @@
 									with essential assistance from Feng Huang (post-doc) and Riley Leff (undergraduate). To make this resource more accessible to future researchers, I developed an
 									interactive web application to allow users to search for isolates based on taxonomy, location, or even amplicon sequence identity using BLAST. Check it out <a href="https://hannahwhitehurst.shinyapps.io/isolate-tracker" ><span class="label">here</span></a>
 									</p>
+
+								<h3 >High throughput image processing</h3>
+								<span class="image main"><a href="https://github.com/hlwhitehurst/plant_image_processing"><img src="images/plantgrowth.png" alt="" /></a></span>
+								<p> For the <a href="https://www.pnas.org/doi/abs/10.1073/pnas.2201285119"> 2023 PNAS manuscript </a>, I wrote a  <a href="https://github.com/hlwhitehurst/plant_image_processing"> python script </a> to analyze plant area in a gnotobiotic plate well. Images were taken at the same height for each plant on a light box. The script looks for circles, crops into an square with the circle transcribed, and converts green pixels to black (thresholds are defined in the code). Then, the area of the circle that is black is counted. Pixels are converted to mm by using the known well size as the conversion factor, and eported to a csv summary. Binary images are saved to an output dirctory for manual review.
+								</p>
 							</article>
 
 						<!-- Contact -->
