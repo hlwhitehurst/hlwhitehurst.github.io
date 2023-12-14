@@ -84,6 +84,8 @@
 								<br> 
 								<br> 
 								<br> 
+								<h3> NGS Bioinformatics pipeline: dual amplicons with inline barcodes </h3>
+								Two of my projects used thousands of samples, meaning that traditional amplification and sequencing methods were cost-prohibitive. I designed a protocol for dual amplification of the gyrB and 16S marker genes for a given microbiome sample within the same PCR reaction. To increase the number of samples I could sequence in a run, I designed the inclusion of inline barcodes, which are distinct nucleotides added to the 5' of the amplicon primers. This requires a few addition bioinformatics steps after sequencing to a) seperate the gyrB and 16S data and b) further decompose the Illumina multiplexed samples by the inline-barcodes. See my [github respository](https://github.com/hlwhitehurst/NGS-dual-amplicon-processing/tree/main) for my bioinformatics pipeline. The scripts were written for use with a high-performance computing cluster (HPC) and are provided as SLURM scripts.
 								<h3 >Web App for Inventory Tracking of Bacteria Isolates </h3>
 								<hr>
 								<span class="image main"><a href="https://hannahwhitehurst.shinyapps.io/isolate-tracker"><img src="images/Isolate-Tracker.png" alt="" /></a></span>
